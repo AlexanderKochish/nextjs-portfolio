@@ -1,0 +1,344 @@
+/* Header Styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--header-border);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  background: var(--header-bg);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  width: 80%;
+}
+
+.navLink:hover {
+  color: var(--accent-primary);
+}
+
+.navLink.active {
+  color: var(--accent-primary);
+}
+
+/* Header Controls */
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Theme Toggle */
+.themeToggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--header-border);
+  border-radius: 50px;
+  padding: 0.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 60px;
+  height: 30px;
+}
+
+.themeToggle::before {
+  content: '🌙';
+  position: absolute;
+  left: 5px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.themeToggle::after {
+  content: '☀️';
+  position: absolute;
+  right: 5px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.themeToggleHandle {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  transform: translateX(0);
+  position: relative;
+  z-index: 2;
+}
+
+.themeToggle.active .themeToggleHandle {
+  transform: translateX(30px);
+}
+
+.themeToggle:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Language Selector */
+.languageSelector {
+  position: relative;
+}
+
+.languageBtn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--header-border);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.languageBtn:hover {
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.languageDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--header-border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 140px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.languageDropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px);
+}
+
+.languageOption {
+  padding: 0.7rem 1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+  display: block;
+  background-color: inherit;
+  border: none;
+  text-align: left;
+}
+
+.languageOption:hover {
+  background: rgba(99, 102, 241, 0.2);
+  color: var(--accent-primary);
+}
+
+/* Mobile Menu Toggle */
+.mobileMenuToggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobileMenuToggle span {
+  width: 25px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.mobileMenuToggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobileMenuToggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuToggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--header-border);
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.mobileMenu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobileNavLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobileNavLink {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: var(--accent-primary);
+}
+
+.mobileControls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--header-border);
+  justify-content: center;
+}
+
+/* Hide desktop controls in mobile menu */
+.mobileMenu .headerControls {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .navLinks {
+    display: none;
+  }
+
+  .headerControls {
+    display: none; /* Hide desktop controls on mobile */
+  }
+
+  .mobileMenuToggle {
+    display: flex;
+  }
+
+  .mobileControls {
+    display: flex; /* Show controls in mobile menu */
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContent {
+    padding: 0.8rem 0;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .mobileMenu {
+    top: 60px;
+  }
+
+  .mobileControls {
+    flex-direction: column;
+    align-items: center;
+  }
+}

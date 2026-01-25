@@ -1,0 +1,153 @@
+{
+  "LocaleLayout": {
+    "title": "Alex Portfolio | Full-Stack Developer",
+    "siteName": "Alex Portfolio",
+    "description": "Full-Stack Developer specializing in React, Next.js, and modern web technologies. Check out my projects and skills."
+  },
+  "header": {
+    "nav": {
+      "about": "About",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact",
+      "menuToggle": "Toggle menu",
+      "switchToLight": "Switch to light theme",
+      "switchToDark": "Switch to dark theme"
+    }
+  },
+  "hero": {
+    "greeting": "👋 Hello, my name is",
+    "name": "Oleksandr Kochish",
+    "title": "Frontend Developer",
+    "subtitle": "I create modern and interactive web applications. Specializing in React, Vue and modern development approaches.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "description1": "I am a <highlight>frontend developer</highlight> with over 2 years of experience in creating modern web applications. I specialize in building <highlight>intuitive interfaces</highlight> and <highlight>optimized performance</highlight>.",
+    "description2": "Constantly learning new technologies and best practices. I believe in <highlight>clean code</highlight>, <highlight>testing</highlight>, and <highlight>continuous learning</highlight>.",
+    "description3": "In my free time, I experiment with new frameworks, contribute to open-source projects, and share knowledge with the community.",
+    "stats": {
+      "years": "Years of experience",
+      "projects": "Projects completed",
+      "clients": "Happy clients",
+      "technologies": "Technologies"
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "subtitle": "Constantly evolving and learning new tools to create better products",
+    "category": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools"
+    },
+    "otherTechnologies": "Other Technologies",
+    "tools": {
+      "reactNative": "Mobile Development",
+      "nextjs": "SSR Framework",
+      "graphql": "API Query Language",
+      "aws": "Cloud Services"
+    }
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "Here are my key works - from concept to implementation",
+    "badge": {
+      "featured": "Featured",
+      "mainProject": "Main Project",
+      "webApp": "Web App",
+      "mobile": "Mobile",
+      "api": "API"
+    },
+    "project": {
+      "title1": "E-Commerce Platform",
+      "description1": "Full-featured e-commerce platform with modern UI, shopping cart, payment system and admin panel. Optimized for performance and UX.",
+      "title2": "Analytics Dashboard",
+      "description2": "Interactive analytics dashboard with charts, tables and real-time metrics. Dark/light theme support.",
+      "title3": "Task Manager App",
+      "description3": "Mobile task management app with offline mode, notifications and cross-device synchronization.",
+      "title4": "REST API Service",
+      "description4": "Scalable REST API with authentication, Swagger documentation, caching and performance monitoring."
+    },
+    "links": {
+      "liveDemo": "🚀 Live Demo",
+      "github": "💻 GitHub",
+      "demo": "Demo",
+      "code": "Code",
+      "docs": "Docs"
+    },
+    "nav": {
+      "discussProject": "Discuss a Project",
+      "moreOnGitHub": "More on GitHub"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to discuss new projects and collaboration opportunities",
+    "info": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "remoteWork": "Open to remote work",
+      "socialMedia": "Social Media"
+    },
+    "links": {
+      "sendEmail": "Send Email",
+      "callMe": "Call Me"
+    },
+    "social": {
+      "telegram": "📨",
+      "github": "💻",
+      "linkedin": "💼",
+      "twitter": "🐦"
+    },
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "subject": "Subject",
+      "sendMessage": "Send Message",
+      "sending": "Sending...",
+      "placeholders": {
+        "name": "Enter your name",
+        "email": "Enter your email",
+        "message": "Enter your message",
+        "subject": "Subject of your message"
+      }
+    }
+  },
+  "footer": {
+    "logo": "Oleksandr Kochish",
+    "brandDescription": "Frontend developer creating modern and interactive web applications. Always open to new challenges and interesting projects.",
+    "navigation": "Navigation",
+    "service": "Services",
+    "contact": "Contact",
+    "projects": "Projects",
+    "location": "📍 Kyiv, Ukraine",
+    "availability": "🕐 Available for projects",
+    "copyright": "© 2024 <name>Oleksandr Kochish</name>. All rights reserved.",
+    "madeWith": "Made with <heart>❤️</heart> and a lot of code",
+    "backToTop": "Back to Top",
+    "social": {
+      "github": "💻",
+      "linkedin": "💼",
+      "telegram": "📨",
+      "twitter": "🐦"
+    },
+    "services": {
+      "frontend": "Frontend Development",
+      "react": "React Applications",
+      "nextjs": "Next.js Development",
+      "webapps": "Web Applications"
+    }
+  },
+  "modal": {
+    "success": "Message sent successfully! I will contact you soon.",
+    "serverError": "Sending error. Please try again later.",
+    "validationError": "Please fill in all required fields.",
+    "invalidEmail": "Please enter a valid email address.",
+    "ok": "OK"
+  }
+}
