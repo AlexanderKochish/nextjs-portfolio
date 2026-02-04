@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { startTransition, useEffect, useRef, useState } from 'react';
 import { useActionState } from 'react';
 import s from '../styles/contacts.module.css';
 import { useTranslations } from 'next-intl';
@@ -9,6 +9,8 @@ import Script from 'next/script';
 
 const ContactForm = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clientMessage, setClientMessage] = useState<string | null>(null);
+  const [isCaptchaLoading, setIsCaptchaLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const t = useTranslations('contact');
@@ -19,29 +21,40 @@ const ContactForm = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsCaptchaLoading(true);
+    setClientMessage(null);
     const formData = new FormData(event.currentTarget);
 
     window.grecaptcha.ready(async () => {
-      const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
-        action: 'submit',
-      });
+      try {
+        const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+          action: 'submit',
+        });
 
-      formData.append('g-recaptcha-response', token);
-      dispatch(formData);
+        formData.append('g-recaptcha-response', token);
+        startTransition(() => {
+          dispatch(formData);
+          setIsCaptchaLoading(false);
+        });
+      } catch {
+        setIsCaptchaLoading(false);
+        setClientMessage(t('errors.captcha_failed'));
+        setIsModalOpen(true);
+      }
     });
   };
 
   useEffect(() => {
     if (!state.message) return;
 
-    if (state.success) {
+    if (state.success || clientMessage) {
       formRef.current?.reset();
     }
 
     const farme = requestAnimationFrame(() => setIsModalOpen(true));
 
     return () => cancelAnimationFrame(farme);
-  }, [state.message, state.success]);
+  }, [state.message, state.success, clientMessage]);
 
   useEffect(() => {
     if (!isModalOpen) return;
@@ -56,6 +69,8 @@ const ContactForm = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const isLoading = isPending || isCaptchaLoading;
 
   return (
     <>
@@ -119,10 +134,14 @@ const ContactForm = () => {
           ></textarea>
         </div>
 
-        <button type="submit" className={s.formSubmit} disabled={isPending}>
-          {isPending ? t('form.sending') : t('form.sendMessage')}
+        <button type="submit" className={s.formSubmit} disabled={isLoading}>
+          {isLoading ? t('form.sending') : t('form.sendMessage')}
         </button>
-        <Modal isOpen={isModalOpen} onClose={closeModal} message={state.message || ''} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          message={clientMessage || state.message || ''}
+        />
 
         <div className={s.formStatus} id="formStatus"></div>
       </form>

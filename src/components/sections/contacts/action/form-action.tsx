@@ -20,7 +20,7 @@ export async function actionFormSubmit(
   formData: FormData
 ): Promise<FormState> {
   const t = await getTranslations('modal');
-  const c = await getTranslations('contact.form');
+  const c = await getTranslations('contact');
   const token = formData.get('g-recaptcha-response');
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const rawData = Object.fromEntries(formData.entries());
@@ -48,6 +48,9 @@ export async function actionFormSubmit(
   }
 
   try {
+    if (!token) {
+      return { success: false, message: c('errors.captcha_failed') };
+    }
     const recaptchaRes = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`,
       { method: 'POST' }
@@ -55,7 +58,7 @@ export async function actionFormSubmit(
     const recaptchaData = await recaptchaRes.json();
 
     if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return { success: false, message: c('spam') };
+      return { success: false, message: c('errors.captcha_failed') };
     }
     const { name, email, subject, message } = validatedFields.data;
     const { error } = await resend.emails.send({
@@ -77,7 +80,8 @@ export async function actionFormSubmit(
       message: t('success'),
     };
   } catch (error) {
-    console.error('Server Action Error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Server Action Error:', errorMessage);
     return {
       pending: false,
       success: false,
