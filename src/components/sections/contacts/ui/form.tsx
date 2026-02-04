@@ -21,12 +21,9 @@ const ContactForm = () => {
     const formData = new FormData(event.currentTarget);
 
     window.grecaptcha.ready(async () => {
-      const token = await window.grecaptcha.execute(
-        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string,
-        {
-          action: 'submit',
-        }
-      );
+      const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, {
+        action: 'submit',
+      });
 
       formData.append('g-recaptcha-response', token);
       dispatch(formData);

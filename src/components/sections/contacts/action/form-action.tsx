@@ -20,6 +20,7 @@ export async function actionFormSubmit(
   formData: FormData
 ): Promise<FormState> {
   const t = await getTranslations('modal');
+  const c = await getTranslations('contact.form');
   const token = formData.get('g-recaptcha-response');
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const rawData = Object.fromEntries(formData.entries());
@@ -54,7 +55,7 @@ export async function actionFormSubmit(
     const recaptchaData = await recaptchaRes.json();
 
     if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return { success: false, message: 'Low trust score. Please try again.' };
+      return { success: false, message: c('spam') };
     }
     const { name, email, subject, message } = validatedFields.data;
     const { error } = await resend.emails.send({

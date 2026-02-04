@@ -89,12 +89,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
-        <NextIntlClientProvider
-          locale={locale}
-          messages={messages}
-          timeZone="Europe/Kiev"
-          now={new Date()}
-        >
+        <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Kiev">
           <ThemeProvider>
             <main className="min-h-screen">{children}</main>
           </ThemeProvider>
