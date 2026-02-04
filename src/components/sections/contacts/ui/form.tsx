@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useActionState } from 'react';
 import s from '../styles/contacts.module.css';
 import { useTranslations } from 'next-intl';
@@ -8,13 +8,14 @@ import Modal from '@/components/ui/modal/modal';
 import Script from 'next/script';
 
 const ContactForm = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const t = useTranslations('contact');
   const [state, dispatch, isPending] = useActionState(actionFormSubmit, {
     success: false,
     message: '',
   });
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,10 +32,14 @@ const ContactForm = () => {
   };
 
   useEffect(() => {
-    let farme: number;
-    if (state.message) {
-      farme = requestAnimationFrame(() => setIsModalOpen(true));
+    if (!state.message) return;
+
+    if (state.success) {
+      formRef.current?.reset();
     }
+
+    const farme = requestAnimationFrame(() => setIsModalOpen(true));
+
     return () => cancelAnimationFrame(farme);
   }, [state.message, state.success]);
 
@@ -58,7 +63,7 @@ const ContactForm = () => {
         src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
       />
 
-      <form onSubmit={handleSubmit} className={s.contactForm} id="contactForm">
+      <form ref={formRef} onSubmit={handleSubmit} className={s.contactForm} id="contactForm">
         <div className={s.formGroup}>
           <label className={s.formLabel} htmlFor="name">
             {t('form.name')}
