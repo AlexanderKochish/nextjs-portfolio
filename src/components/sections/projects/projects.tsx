@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import shopPhoto from '../../../../public/shop.png';
+import telegramBotPhoto from '../../../../public/xlT3oML8L0A-1024x768.jpg';
 
 const Projects = () => {
   const t = useTranslations('projects');
@@ -21,13 +22,16 @@ const Projects = () => {
       github: 'https://github.com/AlexanderKochish/qpick',
     },
     {
+      image: telegramBotPhoto,
       titleKey: 'projects.project.title2',
-      title: 'Analytics Dashboard',
+      title: 'AI Horoscope Bot',
       descKey: 'projects.project.description2',
-      desc: 'Interactive analytics dashboard with charts, tables and real-time metrics. Dark/light theme support.',
-      tech: ['Vue.js', 'D3.js', 'TypeScript', 'Chart.js'],
-      badge: 'Web App',
+      desc: 'Telegram bot that provides daily horoscopes using AI-generated content, with user preferences and notifications.',
+      tech: ['JavaScript', 'Node.js', 'Railway', 'Telegram Bot API', 'OpenAI API', 'PostgreSQL'],
+      badge: 'Bot',
       icon: '📊',
+      liveDemo: 'https://t.me/bobynews_bot?start=parameter',
+      github: 'https://github.com/AlexanderKochish/bot',
     },
     {
       titleKey: 'projects.project.title3',
@@ -152,10 +156,10 @@ const Projects = () => {
                   ))}
                 </div>
                 <div className={s.projectLinks}>
-                  <a href="#" className={`${s.projectLink} ${s.demo}`}>
+                  <a href={project.liveDemo} className={`${s.projectLink} ${s.demo}`}>
                     Demo
                   </a>
-                  <a href="#" className={s.projectLink}>
+                  <a href={project.github} className={s.projectLink}>
                     Code
                   </a>
                 </div>
