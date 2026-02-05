@@ -53,9 +53,11 @@ export async function generateMetadata({
       images: [
         {
           url: imageUrl,
+          secureUrl: imageUrl,
           width: 1200,
           height: 630,
-          alt: 'Oleksandr Kochish Portfolio',
+          alt: 'Oleksandr Kochish Portfolio Preview',
+          type: 'image/png',
         },
       ],
     },
