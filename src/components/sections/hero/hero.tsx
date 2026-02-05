@@ -3,6 +3,7 @@ import s from './hero.module.css';
 import hero from '../../../../public/hero-img.jpg';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 const Hero = () => {
   const t = useTranslations('hero');
@@ -27,12 +28,12 @@ const Hero = () => {
             <p className={s.subtitle}>{t('subtitle')}</p>
 
             <div className={s.ctaButtons}>
-              <a href="#projects" className={`${s.btn} ${s.btnPrimary}`}>
+              <Link href="#projects" className={`${s.btn} ${s.btnPrimary}`}>
                 {t('viewProjects')}
-              </a>
-              <a href="#contact" className={`${s.btn} ${s.btnSecondary}`}>
+              </Link>
+              <Link href="#contact" className={`${s.btn} ${s.btnSecondary}`}>
                 {t('contactMe')}
-              </a>
+              </Link>
             </div>
 
             <div className={s.techStack}>

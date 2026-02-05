@@ -119,6 +119,10 @@ declare const messages: {
         "message": "Enter your message",
         "subject": "Subject of your message"
       }
+    },
+    "errors": {
+      "captcha_failed": "reCAPTCHA verification failed. Please refresh the page or try again later.",
+      "unexpected": "An unexpected error occurred. Please try again."
     }
   },
   "footer": {

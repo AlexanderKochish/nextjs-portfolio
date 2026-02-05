@@ -62,7 +62,7 @@ export async function actionFormSubmit(
     }
     const { name, email, subject, message } = validatedFields.data;
     const { error } = await resend.emails.send({
-      from: 'Portfolio <onboarding@resend.dev>',
+      from: 'Portfolio <info@alexandrkochish.com>',
       to: process.env.CONTACT_EMAIL as string,
       subject: `Portfolio: ${subject}`,
       react: <ContactEmail name={name} email={email} subject={subject} message={message} />,
